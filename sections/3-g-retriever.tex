@@ -1,4 +1,23 @@
 \section{G-Retriever}
 
 G-Retriever is a model that applies the RAG approach to text-based graphs.
-It was introduced in 2024 by \cite{g-retriever}.
+It was introduced in 2024 by \cite{g-retriever} and focuses on text-based graphs, i.e. graphs where both nodes and edges are associated with text labels, as knowledge sources.
+Such graphs are common in many domains, for example knowledge graphs, social networks, and scene graphs.
+Since these graphs can be quite large with only a small fraction of the nodes and edges relevant to a given generation task, G-Retriever aims to retrieve the most relevant subgraph for a given generation task.
+
+The process consists of four steps: (1) Indexing, (2) retrieval, (3) subgraph construction, and (4) generation.
+
+In the indexing step, the node and edge attributes of the graph are turned into vector representations via a pre-trained language model and stored in a nearest neighbor data structure.
+
+In the retrieval step, the query is encoded using the same pre-trained language model, and the top-k most relevant nodes and edges are retrieved based on the similarity between the query and the node and edge representations.
+
+In the subgraph construction step, the retrieved nodes and edges are used to construct a subgraph that contains as much relevant information as possible while including as little unnecessary nodes and edges as possible.
+This is achieved with a modified version of the Price-collecting Steiner Tree (PCST) algorithm.
+Modifications are necessary, because the original PCST problem assumes that all information is contained in the nodes, which are assigned prices, and edges only have non-negative costs, i.e. cannot add any value to a solution.
+For this task, edges are associated with text attributes which may be relevant to the query, therefore edges edges can also to have prices in addition to costs.
+The authors show, that this modified problem is equivalent to the original PCST problem.
+If a given edge has a price that is lower than its cost, this can be treated as a reduced cost.
+Since PCST does not allow for negative edge costs, another approach needs to be taken if the price exceeds the cost.
+Then, a virtual node is introduced that connects the two nodes connected by the original edge, and the price of the virtual node is set to the difference between the price and the cost of the edge.
+
+Once this optimal subgraph has been constructed, it can be supplied to the generation step.
