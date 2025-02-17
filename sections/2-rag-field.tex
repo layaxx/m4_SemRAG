@@ -7,3 +7,9 @@ RAG is a subfield of Natural Language Processing that has gained traction since 
 The foundational work in this field was done by \cite{rag}, who introduced the RAG framework.
 The main idea behind this paper was to allow pre-trained language models to access external knowledge sources during generation, thereby allowing the model to condition on information retrieved from external sources, in addition to  the knowledge embedded into its weight during the training process.
 The authors show that such external knowledge sources can be updated, expanded, and refined independently of the model, which allows for more up-to-date and diverse information without the need to expend the resources associated with training large language models.
+
+Because this approach works well for knowledge-intensive tasks, a common use case for RAG models is question answering.
+Depending on the intended application, there are different conceivable knowledge sources.
+Common choices include Wikipedia articles or scientific papers.
+Some papers also make use of the internet as a knowledge source, which allows for more up-to-date information, but also introduces the risk of noise and misinformation.
+This offers the opportunity to build on the immense effort that has already gone into optimizing search engines such as Bing or Google, instead of having to build or train a custom retrieval component.

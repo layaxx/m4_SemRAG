@@ -1,10 +1,8 @@
 \section{Introduction}
 
-This template and the instructions are for student term papers.
+While Large Language Models (LLMs) have been shown to perform well on a variety of Natural Language Processing (NLP) tasks, including question answering, they struggle with hallucinations and outdated or incomplete information.
+LLMs are trained on large corpora of text data and retain a lot of information in their weights \cite{petroni-etal-2019-language}, but the amount of information is limited by the model size and information content is frozen during training.
+This makes updating or changing knowledge expensive and time-consuming, as it requires retraining the model.
 
-The templates include the \LaTeX{} source of this document (\texttt{paper.tex}),
-the \LaTeX{} style file used to format it (\texttt{acl.sty}),
-an ACL bibliography style (\texttt{acl\_natbib.bst}),
-and an example bibliography (\texttt{custom.bib}).
-
-Usually, a term paper consists of 5 to 8 pages excluding references and appendices.
+Retrieval-Augmented Generation (RAG) is a subfield of NLP that aims to address these issues by combining the strengths of retrieval-based and generation-based models.
+Generally, this is achieved by retrieving relevant information from external knowledge sources and adding the retrieved information to the context in order to improve results of the generation process.
