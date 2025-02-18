@@ -21,3 +21,7 @@ Otherwise, similarity of vector embeddings is a popular choice to determine rele
 
 One important choice is the number of documents that are retrieved, with typical choices being 3-5 documents per query.
 Some approaches perform the retrieval step only once per query, conditioning the entire output on the same set of documents. Others retrieve documents more often, in the extreme once per generated token.
+
+% standalone retriever vs end-to-end retriever, frozen retriever vs trainable retriever
+
+Adding retrieval to the generation process has been shown to make the performance of models on par with or even surpass the performance of models that are much larger in terms of parameters, but do not have access to external knowledge sources \cite{in-context}. Moreover, it can mitigate the effects of small context-windows, improve the quality of the generated text in general and reduce resource requirements \cite{Xu2023RetrievalML}.

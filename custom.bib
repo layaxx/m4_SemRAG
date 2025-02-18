@@ -144,3 +144,32 @@
   abstract  = {The largest store of continually updating knowledge on our planet can be accessed via internet search. In this work we study giving access to this information to conversational agents. Large language models, even though they store an impressive amount of knowledge within their weights, are known to hallucinate facts when generating dialogue (Shuster et al., 2021); moreover, those facts are frozen in time at the point of model training. In contrast, we propose an approach that learns to generate an internet search query based on the context, and then conditions on the search results to finally generate a response, a method that can employ up-to-the-minute relevant information. We train and evaluate such models on a newly collected dataset of human-human conversations whereby one of the speakers is given access to internet search during knowledgedriven discussions in order to ground their responses. We find that search-query based access of the internet in conversation provides superior performance compared to existing approaches that either use no augmentation or FAISS-based retrieval (Lewis et al., 2020b).}
 }
 
+@inproceedings{multimodal,
+  author    = {Yasunaga, Michihiro and Aghajanyan, Armen and Shi, Weijia and James, Rich and Leskovec, Jure and Liang, Percy and Lewis, Mike and Zettlemoyer, Luke and Yih, Wen-tau},
+  title     = {Retrieval-augmented multimodal language modeling},
+  year      = {2023},
+  publisher = {JMLR.org},
+  abstract  = {Recent multimodal models such as DALL-E and CM3 have achieved remarkable progress in text-to-image and image-to-text generation. However, these models store all their knowledge (e.g., the appearance of the Eiffel Tower) in the model parameters, requiring increasingly larger models and training data to capture more knowledge. To integrate knowledge in a more scalable and modular way, we propose a retrieval-augmented multimodal model, which enables a base multimodal model (generator) to refer to relevant text and images fetched by a retriever from external memory (e.g., documents on the web). Specifically, for the retriever, we use a pretrained CLIP, and for the generator, we train a CM3 Transformer on the LAION dataset. Our resulting model, named Retrieval-Augmented CM3 (RA-CM3), is the first multimodal model that can retrieve and generate both text and images. We show that RA-CM3 significantly outperforms baseline multimodal models such as DALL-E and CM3 on both image and caption generation tasks (12 FID and 17 CIDEr improvements on MS-COCO), while requiring much less compute for training (<30\% of DALLE). Moreover, we show that RA-CM3 exhibits novel capabilities, such as faithful image generation and multimodal in-context learning (e.g., image generation from demonstrations).},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  articleno = {1659},
+  numpages  = {15},
+  location  = {Honolulu, Hawaii, USA},
+  series    = {ICML'23}
+}
+
+@article{Xu2023RetrievalML,
+  title   = {Retrieval meets Long Context Large Language Models},
+  author  = {Peng Xu and Wei Ping and Xianchao Wu and Lawrence C. McAfee and Chen Zhu and Zihan Liu and Sandeep Subramanian and Evelina Bakhturina and Mohammad Shoeybi and Bryan Catanzaro},
+  journal = {ArXiv},
+  year    = {2023},
+  volume  = {abs/2310.03025},
+  url     = {https://api.semanticscholar.org/CorpusID:263620134}
+}
+
+@inproceedings{Benchmarking,
+  title     = {Benchmarking Large Language Models in Retrieval-Augmented Generation},
+  author    = {Jiawei Chen and Hongyu Lin and Xianpei Han and Le Sun},
+  booktitle = {AAAI Conference on Artificial Intelligence},
+  year      = {2023},
+  url       = {https://api.semanticscholar.org/CorpusID:261530434}
+}

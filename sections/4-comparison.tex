@@ -1,6 +1,6 @@
 \section{Comparison to selected papers}
 
-This section will contextualize G-Retriever in the field of RAG by comparing it to selected papers, highlighting similarities and key differences.
+This section will contextualize G-Retriever in the field of RAG by comparing it to selected papers, highlighting similarities and key differences between different systems.
 
 \subsection{Retrieval-Augmented Generation for    Knowledge-Intensive NLP Tasks}
 
@@ -39,5 +39,38 @@ Apart from the general concept of retrieving information and using it to improve
 
 \subsection{Retrieval-Augmented Retriever Multimodal Language Modeling}
 
+RA-CM3 is a retrieval augmented multi-modal model, where both the knowledge sources and the output can be text or images \cite{multimodal}.
+
+Like many RAG approaches, RA-CM3 uses Maximum Inner Product Search to find relevant documents from its pool of candidates, but a special multi-modal encoder like CLIP is necessary to allow both images and text to be used.
+
+The authors show that their approach gives better generation results, while using less training resources at the same time.
+Additionally, they explore other use cases such as controlled image generation and image editing.
+
+While G-Retriever is evaluated on spatial reasoning tasks, it can not not use images as input or output, instead needing descriptions of the scene as textual graph as knowledge source.
+
 \subsection{Retrieval meets Long Context Large Language Models}
 
+How do retrieval augmentation and long context windows for LLMs compare, and how does a combination of both perform?
+Those are the central questions that \citet{Xu2023RetrievalML} set out to answer in this 2024 paper.
+
+The authors evaluate their system with a dataset focused on question answering, where some questions require multi-hop reasoning, similar to the data in G-Retriever.
+
+Results show that retrieval augmentation can bring the performance of models with small context windows on par with models much larger context, while reducing inference time.
+
+\subsection{Benchmarking Large Language Models in Retrieval-Augmented Generation}
+
+The authors of \citet{benchmarking} identify several key challenges that RAG models in general face. Those are \textbf{noise robustness} (the ability to generate correct responses when not all of the supplied documents are relevant to the answer), \textbf{negative rejection} (the ability to decline to answer if not enough information is known), \textbf{information integration} (the ability to aggregate information from multiple documents) and \textbf{counterfactual robustness} (the ability detect conflicting information).
+
+While G-Retriever is not among the systems that have been examined for this paper, these could still be relevant.
+One exception might be information integration, since G-Retriever only uses a single (sub-) graph to condition on.
+
+
+
+\subsection{G-Retriever}
+
+How does G-Retriever compare to these models?
+
+The main difference G-Retriever has compared to others is its focus on text-based graphs as knowledge sources, and the subgraph construction step that other approaches do not need.
+
+It also performs prompt tuning, which is not common in other RAG models. Its retrieval component is not trained, which is a difference to some, but not all models.
+While the authors mention the possibility of using the model in a dialog system, in this paper they use G-Retriever in a question answering scenario, which is a very popular use case for RAG systems.
