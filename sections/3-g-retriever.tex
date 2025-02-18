@@ -1,35 +1,51 @@
 \section{G-Retriever}
 
-This section will introduce the 2024 G-Retriever model and its key concepts, contributions, and approaches.
+This section will introduce the 2024 G-Retriever model and describe its motivation, architecture and evaluation result. In the next section, G-Retriever is compared to selected other retrieval augmented models, to highlight key differences.
 
 \subsection{Motivation}
 G-Retriever is a model that applies the RAG approach to text-based graphs.
 It was introduced in 2024 by \cite{g-retriever} and focuses on text-based graphs, i.e. graphs where both nodes and edges are associated with text labels, as knowledge sources.
-Such graphs are common in many domains, for example knowledge graphs, social networks, and scene graphs.
-Since these graphs can be quite large with only a small fraction of the nodes and edges relevant to a given generation task, G-Retriever aims to retrieve the most relevant subgraph for a given generation task.
+Such graphs are common in many domains, for example knowledge graphs, and scene graphs, the authors argue.
+
+Since these graphs, especially knowledge graphs, can be quite large, with only a fraction of the nodes and edges relevant to a given generation task, G-Retriever aims to retrieve the most relevant subgraph for a given generation task.
+This improves the time needed for generation, the required context window length the model must support as well as the quality of the generated text, as the model can focus on the most relevant information.
 
 \subsection{Architecture}
 
 The process consists of four steps: (1) Indexing, (2) retrieval, (3) subgraph construction, and (4) generation.
 
-In the \textbf{indexing} step, the node and edge attributes of the graph are turned into vector representations via a pre-trained language model and stored in a nearest neighbor data structure.
+In the \textbf{indexing} step, the node and edge attributes of the graph are turned into vector representations via a pre-trained language model such as SentenceBERT.
+The results are then stored in a nearest neighbor data structure to make the next steps easier.
 
-In the \textbf{retrieval} step, the query is encoded using the same pre-trained language model, and the top-k most relevant nodes and edges are retrieved based on the similarity between the query and the node and edge representations.
-Because one of the key benefits of graphs over unstructured text are the relation between entities, an additional step is necessary that other, document-based approaches do not need:
-Using the relevance scores of nodes and edges we just calculated, we want to find an optimal subgraph from the original graph that we can give as context to the model.
-This is necessary, because the relevant nodes and edges might be from different parts of the graph and not even be connected to each other, therefore missing information that might be helpful.
+In the \textbf{retrieval} step, the query is encoded using the same pre-trained language model, and for both nodes and edges the top-k most relevant results are retrieved based on the similarity of the embeddings. The value of k can vary between nodes and edges. The authors use 3 and 5 respectively and show that this leads to optimal results.
+Previous work would use these results directly as context for the model, but the authors argue that this is not optimal, as the most relevant nodes and edges might not be connected to each other in the original graph and important relations between entities might thus be missing.
+To keep the main benefit of graphs over unstructured text, they therefore introduce an additional subgraph construction step, aiming to construct an optimal subgraph.
 
-In the \textbf{subgraph construction} step, the retrieved nodes and edges are used to construct a subgraph that contains as much relevant information as possible while including as little unnecessary nodes and edges as possible.
+
+In this \textbf{subgraph construction} step, the retrieved nodes and edges are used to construct a subgraph that contains as much relevant information as possible while including as little unnecessary nodes and edges as possible.
 This is achieved with a modified version of the Price-collecting Steiner Tree (PCST) algorithm.
-Modifications are necessary, because the original PCST problem assumes that all information is contained in the nodes, which are assigned prices, and edges only have non-negative costs, i.e. cannot add any value to a solution.
-For this task, edges are associated with text attributes which may be relevant to the query, therefore edges edges can also to have prices in addition to costs.
-The authors show, that this modified problem is equivalent to the original PCST problem.
-If a given edge has a price that is lower than its cost, this can be treated as a reduced cost.
+
+PCST is a well-known optimization problem in graph theory, where the goal is to find a subgraph that connects a given set of nodes with minimum cost.
+To achieve this, nodes are assigned prices, edges are assigned costs, and the goal is to find a subgraph that maximizes the difference between prices and cost.
+
+To use the same algorithm, some modifications are necessary.
+The original PCST problem assumes that all information is contained in the nodes and edges can never add any value.
+Since in our case edges are associated with text attributes which may be relevant to the query, we want to assign prices to edges as well (in addition to the cost).
+
+The authors show that this can be transformed into the original PCST problem, such that the same algorithm can still be used.
+If a given edge has a price that is lower than or equal to its cost, this can be treated as a reduced cost.
 Since PCST does not allow for negative edge costs, another approach needs to be taken if the price exceeds the cost.
-Then, a virtual node is introduced that connects the two nodes connected by the original edge, and the price of the virtual node is set to the difference between the price and the cost of the edge.
+If that is the case, a virtual node is introduced that connects the two nodes originally connected by the edge.
+This virtual node is assigned the difference between the price and the cost of the  original edge as a price.
+The newly inserted edges are assigned a cost of zero.
 
 Once this optimal subgraph has been constructed, it is supplied to the generative model for the \textbf{generation} step.
 The subgraph is used in two ways: (1) encoded via a graph encoder, scaled to the correct dimension via a projection layer and supplied to the LLM used in the generation process, and (2) prepended to the query in a textualized form.
+
+(1) is used by the model to perform soft prompt tuning. For (2), the authors choose a simple csv-like format to represent the graph, which is then prepended to the query.
+The authors note that this may not be optimal, but works well in practice and further research into better formats is outside the scope of this paper.
+In an ablation study, they show that both the encoded and the textualized graphs are important to the model's performance.
+The projection layer had the lowest impact on performance, with its main contribution being to ensure that the dimension between graph encoder and LLM match.
 
 \subsection{Evaluation and Results}
 
