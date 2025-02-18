@@ -39,3 +39,108 @@
   pages     = {2463--2473},
   abstract  = {Recent progress in pretraining language models on large textual corpora led to a surge of improvements for downstream NLP tasks. Whilst learning linguistic knowledge, these models may also be storing relational knowledge present in the training data, and may be able to answer queries structured as {\textquotedblleft}fill-in-the-blank{\textquotedblright} cloze statements. Language models have many advantages over structured knowledge bases: they require no schema engineering, allow practitioners to query about an open class of relations, are easy to extend to more data, and require no human supervision to train. We present an in-depth analysis of the relational knowledge already present (without fine-tuning) in a wide range of state-of-the-art pretrained language models. We find that (i) without fine-tuning, BERT contains relational knowledge competitive with traditional NLP methods that have some access to oracle knowledge, (ii) BERT also does remarkably well on open-domain question answering against a supervised baseline, and (iii) certain types of factual knowledge are learned much more readily than others by standard language model pretraining approaches. The surprisingly strong ability of these models to recall factual knowledge without any fine-tuning demonstrates their potential as unsupervised open-domain QA systems. The code to reproduce our analysis is available at \url{https://github.com/facebookresearch/LAMA}.}
 }
+@inproceedings{explagraphs,
+  title     = {{E}xpla{G}raphs: An Explanation Graph Generation Task for Structured Commonsense Reasoning},
+  author    = {Saha, Swarnadeep  and
+               Yadav, Prateek  and
+               Bauer, Lisa  and
+               Bansal, Mohit},
+  editor    = {Moens, Marie-Francine  and
+               Huang, Xuanjing  and
+               Specia, Lucia  and
+               Yih, Scott Wen-tau},
+  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},
+  month     = nov,
+  year      = {2021},
+  address   = {Online and Punta Cana, Dominican Republic},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2021.emnlp-main.609/},
+  doi       = {10.18653/v1/2021.emnlp-main.609},
+  pages     = {7716--7740},
+  abstract  = {Recent commonsense-reasoning tasks are typically discriminative in nature, where a model answers a multiple-choice question for a certain context. Discriminative tasks are limiting because they fail to adequately evaluate the model`s ability to reason and explain predictions with underlying commonsense knowledge. They also allow such models to use reasoning shortcuts and not be {\textquotedblleft}right for the right reasons{\textquotedblright}. In this work, we present ExplaGraphs, a new generative and structured commonsense-reasoning task (and an associated dataset) of explanation graph generation for stance prediction. Specifically, given a belief and an argument, a model has to predict if the argument supports or counters the belief and also generate a commonsense-augmented graph that serves as non-trivial, complete, and unambiguous explanation for the predicted stance. We collect explanation graphs through a novel Create-Verify-And-Refine graph collection framework that improves the graph quality (up to 90{\%}) via multiple rounds of verification and refinement. A significant 79{\%} of our graphs contain external commonsense nodes with diverse structures and reasoning depths. Next, we propose a multi-level evaluation framework, consisting of automatic metrics and human evaluation, that check for the structural and semantic correctness of the generated graphs and their degree of match with ground-truth graphs. Finally, we present several structured, commonsense-augmented, and text generation models as strong starting points for this explanation graph generation task, and observe that there is a large gap with human performance, thereby encouraging future work for this new challenging task.}
+}
+@article{scenegraphs,
+  title   = {GQA: a new dataset for compositional question answering over real-world images},
+  author  = {Drew A. Hudson and Christopher D. Manning},
+  journal = {ArXiv},
+  year    = {2019},
+  volume  = {abs/1902.09506},
+  url     = {https://api.semanticscholar.org/CorpusID:67855531}
+}
+
+@inproceedings{webqsp,
+  title     = {The Value of Semantic Parse Labeling for Knowledge Base Question Answering},
+  author    = {Yih, Wen-tau  and
+               Richardson, Matthew  and
+               Meek, Chris  and
+               Chang, Ming-Wei  and
+               Suh, Jina},
+  editor    = {Erk, Katrin  and
+               Smith, Noah A.},
+  booktitle = {Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)},
+  month     = aug,
+  year      = {2016},
+  address   = {Berlin, Germany},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/P16-2033/},
+  doi       = {10.18653/v1/P16-2033},
+  pages     = {201--206}
+}
+@article{Marcus2020TheND,
+  title   = {The Next Decade in AI: Four Steps Towards Robust Artificial Intelligence},
+  author  = {Gary F. Marcus},
+  journal = {ArXiv},
+  year    = {2020},
+  volume  = {abs/2002.06177},
+  url     = {https://api.semanticscholar.org/CorpusID:211126492}
+}
+@inproceedings{realm,
+  author    = {Guu, Kelvin and Lee, Kenton and Tung, Zora and Pasupat, Panupong and Chang, Ming-Wei},
+  title     = {REALM: retrieval-augmented language model pre-training},
+  year      = {2020},
+  publisher = {JMLR.org},
+  abstract  = {Language model pre-training has been shown to capture a surprising amount of world knowledge, crucial for NLP tasks such as question answering. However, this knowledge is stored implicitly in the parameters of a neural network, requiring everlarger networks to cover more facts.To capture knowledge in a more modular and interpretable way, we augment language model pretraining with a latent knowledge retriever, which allows the model to retrieve and attend over documents from a large corpus such as Wikipedia, used during pre-training, fine-tuning and inference. For the first time, we show how to pre-train such a knowledge retriever in an unsupervised manner, using masked language modeling as the learning signal and backpropagating through a retrieval step that considers millions of documents.We demonstrate the effectiveness of Retrieval-Augmented Language Model pretraining (REALM) by fine-tuning on the challenging task of Open-domain Question Answering (Open-QA). We compare against state-of-the-art models for both explicit and implicit knowledge storage on three popular Open-QA benchmarks, and find that we outperform all previous methods by a significant margin (4-16\% absolute accuracy), while also providing qualitative benefits such as interpretability and modularity.},
+  booktitle = {Proceedings of the 37th International Conference on Machine Learning},
+  articleno = {368},
+  numpages  = {10},
+  series    = {ICML'20}
+}
+@article{in-context,
+  title     = {In-Context Retrieval-Augmented Language Models},
+  author    = {Ram, Ori  and
+               Levine, Yoav  and
+               Dalmedigos, Itay  and
+               Muhlgay, Dor  and
+               Shashua, Amnon  and
+               Leyton-Brown, Kevin  and
+               Shoham, Yoav},
+  journal   = {Transactions of the Association for Computational Linguistics},
+  volume    = {11},
+  year      = {2023},
+  address   = {Cambridge, MA},
+  publisher = {MIT Press},
+  url       = {https://aclanthology.org/2023.tacl-1.75/},
+  doi       = {10.1162/tacl_a_00605},
+  pages     = {1316--1331},
+  abstract  = {Retrieval-Augmented Language Modeling (RALM) methods, which condition a language model (LM) on relevant documents from a grounding corpus during generation, were shown to significantly improve language modeling performance. In addition, they can mitigate the problem of factually inaccurate text generation and provide natural source attribution mechanism. Existing RALM approaches focus on modifying the LM architecture in order to facilitate the incorporation of external information, significantly complicating deployment. This paper considers a simple alternative, which we dub In-Context RALM: leaving the LM architecture unchanged and prepending grounding documents to the input, without any further training of the LM. We show that In-Context RALM that builds on off-the-shelf general purpose retrievers provides surprisingly large LM gains across model sizes and diverse corpora. We also demonstrate that the document retrieval and ranking mechanism can be specialized to the RALM setting to further boost performance. We conclude that In-Context RALM has considerable potential to increase the prevalence of LM grounding, particularly in settings where a pretrained LM must be used without modification or even via API access.1}
+}
+
+@inproceedings{komeili-etal-2022-internet,
+  title     = {{I}nternet-Augmented Dialogue Generation},
+  author    = {Komeili, Mojtaba  and
+               Shuster, Kurt  and
+               Weston, Jason},
+  editor    = {Muresan, Smaranda  and
+               Nakov, Preslav  and
+               Villavicencio, Aline},
+  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  month     = may,
+  year      = {2022},
+  address   = {Dublin, Ireland},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2022.acl-long.579/},
+  doi       = {10.18653/v1/2022.acl-long.579},
+  pages     = {8460--8478},
+  abstract  = {The largest store of continually updating knowledge on our planet can be accessed via internet search. In this work we study giving access to this information to conversational agents. Large language models, even though they store an impressive amount of knowledge within their weights, are known to hallucinate facts when generating dialogue (Shuster et al., 2021); moreover, those facts are frozen in time at the point of model training. In contrast, we propose an approach that learns to generate an internet search query based on the context, and then conditions on the search results to finally generate a response, a method that can employ up-to-the-minute relevant information. We train and evaluate such models on a newly collected dataset of human-human conversations whereby one of the speakers is given access to internet search during knowledgedriven discussions in order to ground their responses. We find that search-query based access of the internet in conversation provides superior performance compared to existing approaches that either use no augmentation or FAISS-based retrieval (Lewis et al., 2020b).}
+}
+
