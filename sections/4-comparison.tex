@@ -72,5 +72,5 @@ How does G-Retriever compare to these models?
 
 The main difference G-Retriever has compared to others is its focus on text-based graphs as knowledge sources, and the subgraph construction step that other approaches do not need.
 
-It also performs prompt tuning, which is not common in other RAG models. Its retrieval component is not trained, which is a difference to some, but not all models.
-While the authors mention the possibility of using the model in a dialog system, in this paper they use G-Retriever in a question answering scenario, which is a very popular use case for RAG systems.
+It also performs prompt tuning, which is not common in other RAG models. Its retrieval component is not trained, which is a difference to some, but not all models. The actual language model is also frozen, with the only trainable parts being the graph encoder and projection layer.
+While the authors mention the possibility of using the model in a dialog system, in this paper they use G-Retriever for question answering, which is a very popular use case for RAG systems.
