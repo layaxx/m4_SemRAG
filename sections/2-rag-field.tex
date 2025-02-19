@@ -1,27 +1,25 @@
 \section{Retrieval Augmented Generation}
+This section provides an overview of the research field of Retrieval-Augmented Generation (RAG), focusing on its origins and key contributions leading to the G-Retriever model.
 
-This section will give an overview of the research field of Retrieval Augmented Generation (RAG), with a focus on its inception and key contributions leading up to the G-Retriever paper.
+RAG, a subfield of Natural Language Processing (NLP), has gained significant traction since its introduction in 2020. It combines retrieval-based and generation-based models to enhance text generation quality by incorporating information from retrieved documents.
 
-RAG is a subfield of Natural Language Processing that has gained significant traction since its inception in 2020.
-It combines the strengths of retrieval-based and generation-based models, aiming to improve the quality of generated text by incorporating information from retrieved documents.
+The foundational work in this field was introduced by \cite{rag}, who proposed the RAG framework.
+Their key innovation was enabling language models to access external knowledge sources during generation, allowing them to condition outputs on retrieved information in addition to the static knowledge embedded in their weights.
+The authors demonstrated that external knowledge sources could be updated, expanded, and refined independently of the model, facilitating access to more up-to-date and diverse information without the computational cost of retraining large language models.
 
-The foundational work in this field was done by \cite{rag}, who introduced the RAG framework.
-The main idea behind this paper was to allow pre-trained language models to access external knowledge sources during generation, thereby allowing the model to condition on information retrieved from external sources, in addition to  the knowledge embedded into its weight during the training process.
-The authors show that such external knowledge sources can be updated, expanded, and refined independently of the model, which allows for more up-to-date and diverse information without the need to expend the resources associated with training large language models.
+The core mechanism is straightforward: a retrieval component selects relevant documents based on the query, and this retrieved information is integrated into the generation process.
+This can be done by simply prepending the retrieved text to the query or through more sophisticated mechanisms that enable end-to-end training \cite{in-context}.
 
+Given its effectiveness in knowledge-intensive tasks, RAG is widely used in question answering.
+The choice of knowledge source depends on the application, with common options including Wikipedia and scientific literature.
+Some approaches leverage the internet for real-time information, benefiting from search engines like Google or Bing.
+However, this also introduces potential noise and misinformation compared to curated sources.
+If dedicated search engines are not used, document relevance can be determined using vector similarity methods.
 
-The core idea is quite simple: Knowledge relevant to the query is retrieved by some retrieval component and then made available during the generation step, either by simply prepending the data to the query, or via more involved mechanisms, that might allow the entire system or parts of it to be trained end-to-end \cite{in-context}.
+A crucial design choice in RAG models is the number of retrieved documents, typically ranging from three to five per query.
+Some models perform a single retrieval step per query, conditioning the entire response on a fixed set of documents, while others retrieve documents iteratively—up to once per generated token \cite{rag}.
+Models also vary in what parts of the system are static or trainable, with some freezing the retrieval component and others fine-tuning it jointly with the generative model \cite{realm}.
+Some systems allow for off-the-shelf language models to be used without any training, thus enabling the use of pre-trained models via API access.
 
-Because this approach works well for knowledge-intensive tasks, a common use case for RAG models is question answering.
-Depending on the intended application, there are different conceivable knowledge sources.
-Common choices include Wikipedia articles or scientific papers.
-Some papers also make use of the internet as a knowledge source, which allows for more up-to-date information, but also introduces the risk of noise and misinformation.
-This offers the opportunity to build on the immense effort that has already gone into optimizing search engines such as Bing or Google, instead of having to build or train a custom retrieval component.
-Otherwise, similarity of vector embeddings is a popular choice to determine relevance of documents.
-
-One important choice is the number of documents that are retrieved, with typical choices being 3-5 documents per query.
-Some approaches perform the retrieval step only once per query, conditioning the entire output on the same set of documents. Others retrieve documents more often, in the extreme once per generated token.
-
-% standalone retriever vs end-to-end retriever, frozen retriever vs trainable retriever
-
-Adding retrieval to the generation process has been shown to make the performance of models on par with or even surpass the performance of models that are much larger in terms of parameters, but do not have access to external knowledge sources \cite{in-context}. Moreover, it can mitigate the effects of small context-windows, improve the quality of the generated text in general and reduce resource requirements \cite{Xu2023RetrievalML}.
+Adding retrieval results to the generation process has been shown to improve model performance, often matching or surpassing significantly larger models that lack external knowledge access \cite{in-context}.
+Moreover, retrieval enhances response quality, mitigates the limitations of small context windows, and reduces computational resource requirements \cite{Xu2023RetrievalML}.

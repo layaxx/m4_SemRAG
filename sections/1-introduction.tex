@@ -1,8 +1,5 @@
-\section{Introduction}
+While Large Language Models (LLMs) have demonstrated strong performance across various Natural Language Processing (NLP) tasks, including question answering, they are prone to hallucinations and rely on static, potentially outdated information \cite{Marcus2020TheND}.
+LLMs encode knowledge within their model weights \cite{petroni-etal-2019-language}, but their capacity is constrained by model size, and their knowledge remains fixed after training. Updating or modifying this knowledge is computationally expensive and requires full or partial retraining \cite{realm}.
 
-While Large Language Models (LLMs) have been shown to perform well on a variety of Natural Language Processing (NLP) tasks, including question answering, they struggle with hallucinations and outdated or incomplete information \cite{Marcus2020TheND}.
-LLMs are trained on large corpora of text data and retain a lot of information in their weights \cite{petroni-etal-2019-language}, but the amount of information is limited by the model size and information content is frozen during training.
-This makes updating or changing knowledge expensive and time-consuming, as it requires retraining the model \cite{realm}.
-
-Retrieval-Augmented Generation (RAG) is a subfield of NLP that aims to address these issues by combining the strengths of retrieval-based and generation-based models.
-Generally, this is achieved by retrieving relevant information from external knowledge sources and adding the retrieved information to the context in order to improve results of the generation process.
+Retrieval-Augmented Generation (RAG), a subfield of NLP, addresses these limitations by integrating retrieval-based and generation-based approaches.
+By retrieving relevant information from external knowledge sources and incorporating it into the generation process, RAG enhances output accuracy and adaptability.
