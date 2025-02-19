@@ -1,65 +1,75 @@
 \section{Comparison to selected papers}
 
-This section will contextualize G-Retriever in the field of RAG by comparing it to selected papers, highlighting similarities and key differences between different systems.
+This section contextualizes G-Retriever within the field of retrieval-augmented generation (RAG) by comparing it to selected models and highlighting key similarities and differences.
 
 \subsection{Retrieval-Augmented Generation for    Knowledge-Intensive NLP Tasks}
 
-The original RAG paper by \citet{rag} introduced the RAG framework, which allows pre-trained language models to access external knowledge sources during generation.
-Like G-Retriever, RAG uses Similarity of embeddings to retrieve relevant information from external sources, but instead of text-based graphs, it uses chunked Wikipedia articles as knowledge source.
-Unlike G-Retriever, where the retrieval part is frozen and does not change during training, RAG uses a retriever model that is fine-tuned jointly with the generative model.
-Both papers focus on question answering scenarios.
+The original RAG paper by \citet{rag} introduced the retrieval-augmented generation framework, enabling pre-trained language models to retrieve external knowledge during text generation.
+
+Like G-Retriever, RAG retrieves relevant information based on embedding similarity.
+However, whereas G-Retriever utilizes text-based graphs as its knowledge source, RAG operates on chunked Wikipedia articles.
+Another key distinction is that RAG fine-tunes its retriever jointly with the generative model, whereas G-Retriever's retrieval component remains frozen during training.
+Both models primarily target question-answering tasks.
 
 \subsection{REALM: Retrieval-Augmented Language Model Pre-Training}
 
-REALM \cite{realm} is also one of the very early papers of RAG.
-The authors use masked language modelling to pre-train a language model on a large corpus of text and then fine-tune it for Open-Domain Question Answering.
-Like RAG, REALM uses Wikipedia articles as external data source, not graphs.
+REALM \cite{realm} is also one of the early retrieval-augmented language models.
+It employs masked language modeling for pre-training on large text corpora, followed by fine-tuning for open-domain question answering.
+Like RAG, it uses Wikipedia articles as its external knowledge source rather than structured graphs.
 
-A key difference to the G-Retriever model is that REALM uses a retriever model that is fine-tuned jointly with the generative model, gradients calculated for all documents.
-The use of salient span masking also sets it apart from G-Retriever.
+A key distinction from G-Retriever is that REALM fine-tunes its retriever model alongside the generative model, propagating gradients across all retrieved documents.
+Additionally, it leverages salient span masking, a technique not utilized in G-Retriever.
 
 \subsection{In-Context Retrieval-Augmented Language Models}
 
-The core contribution of this paper is the proof that most benefits of RAG can be had with a very simple setup, where documents are retrieved and prepended to the query, which can then be given to any off-the-shelf LLM, without the need to perform any training at all \cite{in-context}.
-Other papers usually modify the LLM architecture in some way to to retrieval augmentation, with various parts being frozen or trainable, depending on the specific paper.
+This work \cite{in-context} demonstrates that the core benefits of RAG can be achieved using a simple approach: retrieving documents and prepending them to the query before passing it to an off-the-shelf LLM—without requiring any additional training.
 
-Using unmodified LLMs has the advantage of not requiring training resources and enabling faster deployment, for example by using off-site LLMs via API-Access.
+Most RAG-based papers modify LLM architectures to integrate retrieval, with varying degrees of trainable components.
+In contrast, this in-context approach allows for immediate deployment and eliminates the need for training resources, making it well-suited for scenarios that rely on API-based LLMs.
 
-
+% TODO: could maybe be expanded a bit more
 
 \subsection{Internet-Augmented Dialogue Generation}
 
-In \cite{komeili-etal-2022-internet}, the authors describe a dialog focused system that is grounded with information retrieved from the internet at generation time.
-To do this, their system generates a query based on its context, which they supply to a search engine such as Bing.
-The documents that are retrieved by this search engine are then added to the context to generate the actual model response.
+\citet{komeili-etal-2022-internet} describe a dialogue-focused system that grounds its responses using real-time information retrieved from the internet.
+To achieve this, the system generates a query based on its context and submits it to a search engine such as Bing.
+The retrieved documents are then incorporated into the context for generating the model’s response.
 
-The real-time usage of the internet enables this approach to access the latest information available on the internet, similar to how a human would probably search for information.
+By leveraging live internet data, this approach ensures access to the most up-to-date information, similar to how a human might search for facts before answering a question.
 
-Apart from the general concept of retrieving information and using it to improve the generation results, this approach has little in common with G-Retriever. While the authors of G-retriever, \citet{g-retriever}, mention in passing the option for a "Chat-with-your-graph" system, they do not explore this in their paper, and the resulting G-Retriever is not really a dialog focused system.
+Beyond the general concept of retrieving external knowledge to enhance generation quality, this approach shares little in common with G-Retriever.
+While the authors of G-Retriever \cite{g-retriever} briefly mention the possibility of a "Chat-with-your-graph" system, they do not explore this idea in detail.
+As a result, G-Retriever is not primarily designed as a dialogue-oriented system.
 
 \subsection{Retrieval-Augmented Retriever Multimodal Language Modeling}
 
-RA-CM3 is a retrieval augmented multi-modal model, where both the knowledge sources and the output can be text or images \cite{multimodal}.
+RA-CM3 is a retrieval-augmented multi-modal model in which both the knowledge sources and generated outputs can be either text or images \cite{multimodal}.
 
-Like many RAG approaches, RA-CM3 uses Maximum Inner Product Search to find relevant documents from its pool of candidates, but a special multi-modal encoder like CLIP is necessary to allow both images and text to be used.
+Similar to other RAG approaches, RA-CM3 employs Maximum Inner Product Search (MIPS) to retrieve relevant documents from a candidate pool. However, it requires a specialized multi-modal encoder, such as CLIP, to process both textual and visual data.
 
-The authors show that their approach gives better generation results, while using less training resources at the same time.
-Additionally, they explore other use cases such as controlled image generation and image editing.
+The authors demonstrate that RA-CM3 improves generation quality while reducing training resource requirements. Additionally, they explore alternative use cases, such as controlled image generation and image editing.
 
-While G-Retriever is evaluated on spatial reasoning tasks, it can not not use images as input or output, instead needing descriptions of the scene as textual graph as knowledge source.
+While G-Retriever is evaluated on spatial reasoning tasks, it does not support images as input or output. Instead, it relies on textual graph representations of scenes as its knowledge source.
 
 \subsection{Retrieval meets Long Context Large Language Models}
 
 How do retrieval augmentation and long context windows for LLMs compare, and how does a combination of both perform?
-Those are the central questions that \citet{Xu2023RetrievalML} set out to answer in this 2024 paper.
+These are the central questions investigated by \citet{Xu2023RetrievalML} in their 2024 study.
 
-The authors evaluate their system with a dataset focused on question answering, where some questions require multi-hop reasoning, similar to the data in G-Retriever.
+The authors evaluate their system on a question-answering dataset, where some queries require multi-hop reasoning, similar to the tasks used for G-Retriever.
 
-Results show that retrieval augmentation can bring the performance of models with small context windows on par with models much larger context, while reducing inference time.
+Their findings indicate that retrieval augmentation can match the performance of models with significantly larger context windows, while also reducing inference time.
+
+% TODO: could also be expanded 
 
 \subsection{Benchmarking Large Language Models in Retrieval-Augmented Generation}
 
-The authors of \citet{benchmarking} identify several key challenges that RAG models in general face. Those are \textbf{noise robustness} (the ability to generate correct responses when not all of the supplied documents are relevant to the answer), \textbf{negative rejection} (the ability to decline to answer if not enough information is known), \textbf{information integration} (the ability to aggregate information from multiple documents) and \textbf{counterfactual robustness} (the ability detect conflicting information).
+\citet{benchmarking} identify several key challenges faced by RAG models:
+
+\paragraph{Noise robustness} The ability to generate accurate responses when some retrieved documents are irrelevant.
+\paragraph{Negative rejection} The ability to refrain from answering when sufficient information is unavailable.
+\paragraph{Information integration} The ability to aggregate knowledge from multiple sources.
+\paragraph{Counterfactual robustness} The ability to detect and resolve conflicting information.
 
 While G-Retriever is not among the systems that have been examined for this paper, these could still be relevant.
 One exception might be information integration, since G-Retriever only uses a single (sub-) graph to condition on.
@@ -70,7 +80,10 @@ One exception might be information integration, since G-Retriever only uses a si
 
 How does G-Retriever compare to these models?
 
-The main difference G-Retriever has compared to others is its focus on text-based graphs as knowledge sources, and the subgraph construction step that other approaches do not need.
+The main distinction of G-Retriever is its focus on text-based graphs as knowledge sources, along with a subgraph construction step that is absent or not needed in other approaches.
 
-It also performs prompt tuning, which is not common in other RAG models. Its retrieval component is not trained, which is a difference to some, but not all models. The actual language model is also frozen, with the only trainable parts being the graph encoder and projection layer.
+Additionally, G-Retriever employs prompt tuning, which is not common in most RAG models.
+Unlike some retrieval-augmented systems, G-Retriever's retrieval component remains frozen during training.
+The language model itself is also frozen, with the graph encoder and projection layer being the only trainable parts.
+
 While the authors mention the possibility of using the model in a dialog system, in this paper they use G-Retriever for question answering, which is a very popular use case for RAG systems.
