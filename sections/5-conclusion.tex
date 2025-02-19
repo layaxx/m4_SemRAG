@@ -1,9 +1,11 @@
 \section{Conclusion}
 
-The field of RAG is a promising approach to improve the quality of generated text by incorporating information from retrieved documents while keeping resource requirements lower than scaling up the language model.
-While most systems focus on unstructured text, such as news articles, scientific paper or Wikipedia, G-Retriever uses structured knowledge graphs as knowledge source.
-This allows the system to make use of the information contained in the structure itself, as well as the text content, but also introduces the need for a more complex retrieval mechanism.
+The field of retrieval-augmented generation presents a promising approach for enhancing the quality of generated text by incorporating information from retrieved documents while maintaining lower resource requirements compared to scaling up language models.
 
-One possibility that is made available by RAG but seems under-explored in the literature, is the option to use the retrieved information to explain the model's reasoning.
-This could provide users with more background information and enable them to fact-check and spot mistakes in the model's generation process.
+While most RAG systems focus on unstructured text sources \textemdash such as news articles, scientific papers, or Wikipedia \textemdash G-Retriever distinguishes itself by leveraging structured graphs as its knowledge source.
+This approach enables the system to utilize both the structure of the graph and its textual content, potentially enhancing reasoning capabilities.
+However, it also introduces the challenge of designing a more complex retrieval mechanism compared to standard text-based approaches.
 
+One promising yet underexplored avenue in RAG research is the use of retrieved information to explain the model's reasoning process.
+Enhancing transparency in this way could provide users with more contextual background, facilitate fact-checking, and improve the detection of potential errors in the model's output.
+Future work could further investigate this aspect, potentially contributing to more interpretable and trustworthy AI systems.
