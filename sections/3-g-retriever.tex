@@ -5,7 +5,7 @@ In the following section, G-Retriever is compared to other retrieval-augmented m
 
 \subsection{Motivation}
 G-Retriever applies the RAG approach to text-based graphs.
-Introduced in 2024 by \cite{g-retriever}, it is designed for question-answering tasks using text-based graphs \textemdash i.e., graphs in which both nodes and edges are associated with textual labels \textemdash as knowledge sources. Such graphs are prevalent in various domains, including knowledge graphs, recommendation systems, and scene graphs, the authors argue.
+Introduced in 2024 by \cite{g-retriever}, it is designed for question-answering tasks using text-based graphs \textemdash{} i.e., graphs in which both nodes and edges are associated with textual labels \textemdash{} as knowledge sources. Such graphs are prevalent in various domains, including knowledge graphs, recommendation systems, and scene graphs, the authors argue.
 
 Given that these graphs, particularly knowledge graphs, can be large and contain only a subset of nodes and edges relevant to a specific task, G-Retriever aims to retrieve the most relevant subgraph for each generation task.
 This approach enhances generation efficiency, reduces the required context window length, and improves the quality of generated text by focusing on the most relevant information.
@@ -49,7 +49,7 @@ An ablation study confirms that both encoded and textualized graphs contribute s
 \subsection{Evaluation and Results}
 
 The authors evaluate G-Retriever on a dataset of text-based graphs, queries, and expected answers.
-This dataset is created by converting existing benchmarks \textemdash ExplaGraphs (debate stance prediction, \cite{explagraphs}), SceneGraphs (visual question answering, \cite{scenegraphs}), and WebQSP (large-scale knowledge graphs, \cite{webqsp}) \textemdash into a unified format.
+This dataset is created by converting existing benchmarks \textemdash{} ExplaGraphs (debate stance prediction, \cite{explagraphs}), SceneGraphs (visual question answering, \cite{scenegraphs}), and WebQSP (large-scale knowledge graphs, \cite{webqsp}) \textemdash{} into a unified format.
 
 The dataset represents three distinct evaluation scenarios:
 

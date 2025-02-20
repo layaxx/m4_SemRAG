@@ -24,10 +24,12 @@ Additionally, it leverages salient span masking, a technique not utilized in G-R
 
 This work \cite{in-context} demonstrates that the core benefits of RAG can be achieved using a simple approach: retrieving documents and prepending them to the query before passing it to an off-the-shelf LLM—without requiring any additional training.
 
-Most RAG-based papers modify LLM architectures to integrate retrieval, with varying degrees of trainable components.
+Most RAG-based papers, including G-Retriever, modify LLM architectures to integrate retrieval, with varying degrees of trainable components.
 In contrast, this in-context approach allows for immediate deployment and eliminates the need for training resources, making it well-suited for scenarios that rely on API-based LLMs.
 
-% TODO: could maybe be expanded a bit more
+In contrast to G-Retriever, which performs retrieval only once per query, this approach retrieves documents iteratively, potentially up to once per generated token.
+The authors also demonstrate that general-purpose retrievers, such as BM25, can outperform embedding-based retrievers like those used in G-Retriever, particularly when combined with additional reranking.
+
 
 \subsection{Internet-Augmented Dialogue Generation}
 
@@ -56,11 +58,12 @@ While G-Retriever is evaluated on spatial reasoning tasks, it does not support i
 How do retrieval augmentation and long context windows for LLMs compare, and how does a combination of both perform?
 These are the central questions investigated by \citet{Xu2023RetrievalML} in their 2024 study.
 
-The authors evaluate their system on a question-answering dataset, where some queries require multi-hop reasoning, similar to the tasks used for G-Retriever.
+The authors evaluate their system on a question-answering dataset in which some queries require multi-hop reasoning, similar to the tasks used for G-Retriever.
+Their findings suggest that retrieval augmentation can match or even surpass the performance of models with significantly larger context windows while also reducing inference time.
 
-Their findings indicate that retrieval augmentation can match the performance of models with significantly larger context windows, while also reducing inference time.
+\citet{Xu2023RetrievalML} further highlight that the lost-in-the-middle problem \textemdash{} where relevant information is buried within a long context window \textemdash{} can be mitigated through retrieval augmentation.
+This aligns with the findings of G-Retriever, which also demonstrates improved performance over baseline models by incorporating only the most relevant subgraphs rather than the entire graph.
 
-% TODO: could also be expanded 
 
 \subsection{Benchmarking Large Language Models in Retrieval-Augmented Generation}
 
